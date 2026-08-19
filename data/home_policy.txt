@@ -8,21 +8,32 @@ The policy is available to individuals aged 18 or older whose primary residence 
 1.2 Covered Property
 The policy covers the insured person's primary residence and personal belongings located within the residence.
 
+1.3 Change of Residence
+The policyholder must notify the insurer within 30 days of permanently changing their primary residence.
+Coverage for the previous residence ends when the policyholder permanently moves to the new residence.
 
-SECTION 2 – COVERAGE
+
+SECTION 2 – PROPERTY DAMAGE COVERAGE
 
 2.1 Fire Damage
 Damage caused directly by fire, smoke, or explosion is covered up to the insured value of the property.
 
 2.2 Water Damage
 Accidental water damage caused by leaking pipes, household appliances, or internal plumbing systems is covered.
-
 A deductible of EUR 500 applies to each water damage claim.
-
 For exclusions related to water damage, see Section 4.2.
 
 2.3 Theft
 Loss or damage resulting from burglary or attempted burglary is covered when there is visible evidence of forced entry.
+For coverage of jewelry and other valuables, see Section 7.3.
+
+2.4 Glass Damage
+Accidental breakage of windows, glass doors, and permanently installed mirrors is covered.
+Damage to decorative glass objects and portable mirrors is not covered.
+
+2.5 Storm and Hail Damage
+Damage directly caused by storms, strong winds, or hail is covered when the event causes physical damage to the insured residence.
+Flood damage is subject to the exclusions described in Section 4.2.
 
 
 SECTION 3 – CLAIMS
@@ -32,25 +43,155 @@ The policyholder must report a claim within five business days after discovering
 
 3.2 Required Documents
 Claims must include photographs of the damage, proof of ownership where applicable, and any relevant police report.
+Additional documents may be requested when necessary to assess the claim.
+
+3.3 Emergency Measures
+The policyholder may take reasonable emergency measures to prevent further damage before the insurer inspects the property.
+Expenses for emergency measures must be supported by receipts.
+
+3.4 Claim Assessment
+The insurer may request an inspection of the damaged property before approving repairs.
+The policyholder must provide reasonable access to the property for inspection.
+
+3.5 Claim Settlement
+Approved claims may be settled through direct payment, reimbursement of repair costs, or replacement of damaged property.
+The method of settlement is determined according to the nature and extent of the loss.
 
 
 SECTION 4 – EXCLUSIONS
 
 4.1 General Exclusions
 Damage caused intentionally by the policyholder is not covered.
-
 Damage resulting from war, nuclear events, or confiscation by public authorities is excluded.
 
 4.2 Water Damage Exclusions
 Water damage caused by gradual deterioration, poor maintenance, or flooding from natural disasters is not covered.
-
 Damage caused by pipes that were known to be defective before the incident is also excluded.
 
+4.3 Unoccupied Property
+Damage occurring while the residence has been unoccupied for more than 60 consecutive days may be excluded unless the insurer was informed in advance.
 
-SECTION 5 – CANCELLATION
+4.4 Illegal Activities
+Loss or damage resulting directly from illegal activities carried out by the policyholder is not covered.
+
+
+SECTION 5 – CANCELLATION AND RENEWAL
 
 5.1 Cancellation by the Policyholder
 The policyholder may cancel the contract by providing 30 days' written notice.
 
 5.2 Cancellation by the Insurer
 The insurer may terminate the contract after a fraudulent claim or non-payment of premiums.
+For rules related to missed premium payments, see Section 9.2.
+
+5.3 Automatic Renewal
+Unless cancelled by either party, the policy automatically renews for another twelve-month period at the end of the current policy term.
+
+5.4 Renewal Notice
+The insurer will notify the policyholder of significant changes to premiums or coverage before the next renewal date.
+
+
+SECTION 6 – LIABILITY COVERAGE
+
+6.1 Personal Liability
+The policy covers accidental bodily injury or property damage caused by the policyholder to third parties.
+The maximum liability coverage is EUR 1,000,000 per claim.
+
+6.2 Liability Exclusions
+Liability arising from intentional damage, criminal activity, or professional business activities is not covered.
+
+6.3 Liability Deductible
+A deductible of EUR 250 applies to each covered liability claim.
+
+6.4 Guest Injuries
+Accidental injuries suffered by guests inside the insured residence may be covered when the policyholder is legally responsible for the incident.
+For general liability exclusions, see Section 6.2.
+
+
+SECTION 7 – VALUABLES AND PERSONAL BELONGINGS
+
+7.1 Standard Personal Belongings
+Furniture, clothing, household equipment, and ordinary personal belongings are covered when damaged by an insured event.
+
+7.2 Coverage Limit for Valuables
+Jewelry, watches, collectibles, and high-value electronic equipment are covered up to a combined limit of EUR 5,000 unless separately declared.
+
+7.3 High-Value Items
+Any individual item worth more than EUR 2,500 must be declared separately to receive full coverage.
+For theft-related requirements, see Section 2.3.
+
+7.4 Personal Belongings Outside the Home
+Personal belongings temporarily taken outside the insured residence are covered up to EUR 1,500 when damaged or stolen during travel within the European Union.
+Theft must be reported to the local police.
+
+
+SECTION 8 – TEMPORARY ACCOMMODATION AND ASSISTANCE
+
+8.1 Temporary Accommodation
+If the residence becomes uninhabitable because of a covered event, the insurer may reimburse reasonable temporary accommodation expenses.
+Coverage is limited to EUR 150 per night for a maximum of 30 nights.
+
+8.2 Emergency Plumber
+The policy covers the reasonable cost of an emergency plumber when immediate intervention is necessary to stop a covered water leak.
+The cost of repairing pipes damaged through gradual deterioration remains excluded under Section 4.2.
+
+8.3 Emergency Locksmith
+The policy covers emergency locksmith assistance when the policyholder is locked out because keys were lost or stolen.
+Replacement of locks after burglary may also be covered when the burglary satisfies the requirements of Section 2.3.
+
+8.4 Emergency Electrician
+The policy covers emergency electrician assistance when an electrical failure creates an immediate safety risk inside the residence.
+Routine maintenance and replacement of worn electrical installations are not covered.
+
+
+SECTION 9 – PREMIUMS AND PAYMENTS
+
+9.1 Premium Payment
+Premiums must be paid according to the payment schedule stated in the insurance contract.
+
+9.2 Missed Payments
+If a premium payment is missed, the insurer will provide written notice and allow a 15-day grace period for payment.
+If payment is not received during the grace period, the insurer may suspend coverage or terminate the contract.
+For termination by the insurer, see Section 5.2.
+
+9.3 Payment Method
+Premiums may be paid monthly or annually using an accepted payment method specified by the insurer.
+
+
+SECTION 10 – FRAUD AND INVESTIGATION
+
+10.1 Fraudulent Claims
+A claim may be considered fraudulent when the policyholder intentionally provides false information, invents a loss, or deliberately exaggerates the value of damaged property.
+
+10.2 Fraud Investigation
+The insurer may request additional evidence or conduct further investigation when there is reasonable suspicion of fraud.
+
+10.3 Consequences of Fraud
+A fraudulent claim may be rejected.
+The insurer may also terminate the insurance contract following a confirmed fraudulent claim.
+For cancellation by the insurer, see Section 5.2.
+
+
+SECTION 11 – POLICY CHANGES
+
+11.1 Change of Personal Information
+The policyholder must notify the insurer of significant changes to their contact information or personal details relevant to the insurance contract.
+
+11.2 Renovations
+Major renovations that significantly change the value or structure of the insured residence must be reported to the insurer.
+
+11.3 Change in Risk
+The policyholder must notify the insurer of significant changes that may increase the risk of loss or damage to the insured property.
+
+
+SECTION 12 – GENERAL CONDITIONS
+
+12.1 Territorial Scope
+Property coverage applies primarily to the insured residence located in Luxembourg.
+Specific coverage outside the residence is described in Section 7.4.
+
+12.2 Policy Documents
+The insurance contract, policy schedule, declared property information, and applicable endorsements together form the complete insurance agreement.
+
+12.3 Contacting the Insurer
+Claims, cancellation notices, and significant policy changes must be communicated through an accepted contact method provided by the insurer.
