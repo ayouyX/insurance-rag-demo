@@ -1,5 +1,4 @@
 import os
-import re
 import requests
 
 from dotenv import load_dotenv
@@ -21,6 +20,11 @@ headers = {
     "Authorization": f"Bearer {api_key}",
     "Content-Type": "application/json"
 }
+
+
+NO_ANSWER = (
+    "The information is not available in the provided documents."
+)
 
 
 # --------------------------------------------------
@@ -74,87 +78,97 @@ def ask_llm(prompt):
 
 
 # --------------------------------------------------
-# Parse ANSWER + COMPLETE
-# --------------------------------------------------
-
-def parse_response(answer):
-
-    match = re.search(
-        r"ANSWER:\s*(.*?)\s*COMPLETE:\s*(YES|NO)",
-        answer,
-        re.IGNORECASE | re.DOTALL
-    )
-
-    if match:
-
-        final_answer = match.group(1).strip()
-        complete = match.group(2).upper()
-
-        return final_answer, complete
-
-    return None, None
-
-
-# --------------------------------------------------
 # Main RAG pipeline
 # --------------------------------------------------
 
 def answer_question(question):
 
-    top_k = 1
     max_k = 3
 
-    final_answer = None
-    complete = "NO"
-    sources = []
+    # --------------------------------------------------
+    # Step 1: Start with top-1
+    # --------------------------------------------------
+
+    context, sources, candidates = retrieve_context(
+        question,
+        top_k=1,
+        candidate_k=max_k
+    )
+
+    top_k = 1
 
 
-    while top_k <= max_k:
+    # --------------------------------------------------
+    # Step 2: Deterministic ambiguity check
+    # --------------------------------------------------
 
-        # ------------------------------------------
-        # Retrieve chunks
-        # ------------------------------------------
+    if len(candidates) >= 2:
 
-        context, sources, candidates = retrieve_context(
-            question,
-            top_k=top_k,
-            candidate_k=max_k
-        )
+        first_score = candidates[0]["score"]
+        second_score = candidates[1]["score"]
 
+        retrieved_sections = {
+            source["section"]
+            for source in sources
+        }
 
-        # ------------------------------------------
-        # Deterministic ambiguity check
-        # ------------------------------------------
-
-        if top_k == 1 and len(candidates) >= 2:
-
-            first_score = candidates[0]["score"]
-            second_score = candidates[1]["score"]
-
-            retrieved_sections = {
-                source["section"]
-                for source in sources
-            }
-
-            second_section = candidates[1]["section"]
+        second_section = candidates[1]["section"]
 
 
-            # If the second result is very close to the first,
-            # retrieve another chunk before asking the LLM.
-            if (
-                second_score >= first_score * 0.85
-                and second_section not in retrieved_sections
-            ):
+        # If top-1 and top-2 are close,
+        # use top-2 before calling the LLM.
+        if (
+            second_score >= first_score * 0.85
+            and second_section not in retrieved_sections
+        ):
 
-                top_k += 1
-                continue
+            top_k = 2
+
+            context, sources, candidates = retrieve_context(
+                question,
+                top_k=top_k,
+                candidate_k=max_k
+            )
 
 
-        # ------------------------------------------
-        # Build prompt
-        # ------------------------------------------
+    # --------------------------------------------------
+    # Step 3: Optional top-3 ambiguity check
+    # --------------------------------------------------
 
-        prompt = f"""
+    if top_k == 2 and len(candidates) >= 3:
+
+        second_score = candidates[1]["score"]
+        third_score = candidates[2]["score"]
+
+        retrieved_sections = {
+            source["section"]
+            for source in sources
+        }
+
+        third_section = candidates[2]["section"]
+
+
+        # Only expand again if the third result
+        # is also very close to the second.
+        if (
+            third_score >= second_score * 0.90
+            and third_section not in retrieved_sections
+        ):
+
+            top_k = 3
+
+            context, sources, candidates = retrieve_context(
+                question,
+                top_k=top_k,
+                candidate_k=max_k
+            )
+
+
+    # --------------------------------------------------
+    # Step 4: Build final prompt
+    # --------------------------------------------------
+
+    prompt = f"""
 You are an insurance document assistant.
 
 Answer the user's question using only the information
@@ -165,96 +179,60 @@ Rules:
 - Do not use outside knowledge.
 
 - Answer only using information explicitly available
-  in the provided context.
+  in the context.
 
-- COMPLETE: YES means the current context fully answers
-  every part of the user's question.
+- If the information needed to answer the question
+  is not available in the context, say exactly:
 
-- COMPLETE: NO means more document information is needed.
+  "{NO_ANSWER}"
 
-- If only part of the user's question can be answered,
-  return COMPLETE: NO.
+- Do not invent missing information.
 
 - Do not mention section numbers or source references
-  in the final answer.
+  in the answer.
 
 - Do not include reasoning, metadata, safety labels,
   classifications, or commentary.
 
 - Keep the answer clear and concise.
 
-
-Return exactly:
-
-ANSWER: <your answer>
-COMPLETE: YES or NO
-
-
 CONTEXT:
 
 {context}
 
-
 QUESTION:
 
 {question}
+
+ANSWER:
 """
 
 
-        # ------------------------------------------
-        # Ask LLM
-        # ------------------------------------------
+    # --------------------------------------------------
+    # Step 5: ONE LLM call
+    # --------------------------------------------------
 
-        response = ask_llm(prompt)
-
-
-        if response is None:
-
-            return (
-                "Something went wrong while generating the answer.",
-                []
-            )
+    answer = ask_llm(prompt)
 
 
-        # ------------------------------------------
-        # Parse response
-        # ------------------------------------------
+    if answer is None:
 
-        final_answer, complete = parse_response(response)
-
-
-        if final_answer is None or complete is None:
-
-            return (
-                "Something went wrong while processing the answer.",
-                []
-            )
+        return (
+            "Something went wrong while generating the answer.",
+            []
+        )
 
 
-        # ------------------------------------------
-        # Stop if context is enough
-        # ------------------------------------------
-
-        if complete == "YES":
-
-            return final_answer, sources
+    answer = answer.strip()
 
 
-        # ------------------------------------------
-        # Otherwise expand retrieval
-        # ------------------------------------------
+    # No sources if document does not contain the answer
+    if answer == NO_ANSWER:
 
-        top_k += 1
+        return answer, []
 
 
-    # ----------------------------------------------
-    # No sufficient answer found
-    # ----------------------------------------------
-
-    return (
-        "The information is not available in the provided documents.",
-        []
-    )
+    return answer, sources
 
 
 # --------------------------------------------------
