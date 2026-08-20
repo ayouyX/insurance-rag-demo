@@ -1,6 +1,6 @@
 # 🛡️ Insurance Policy RAG Assistant
 
-A lightweight document-based question answering assistant for a synthetic home insurance policy.
+A lightweight document-based question-answering assistant for a synthetic home insurance policy.
 
 The application uses a manually implemented Retrieval-Augmented Generation (RAG) pipeline to retrieve relevant policy sections and generate grounded answers through an LLM.
 
@@ -30,6 +30,23 @@ The application is deployed using Streamlit Community Cloud.
 
 ---
 
+## 🏗️ System Architecture
+
+<p align="center">
+  <img src="assets/architecture.png" alt="RAG System Architecture" width="1000"/>
+</p>
+
+<p align="center">
+  <em>Architecture of the Insurance Policy RAG Assistant</em>
+</p>
+
+The architecture separates the system into two main stages:
+
+- **Offline ingestion and indexing**: document parsing, section-based chunking, embedding generation, and cross-reference indexing.
+- **Online retrieval and generation**: query embedding, semantic ranking, adaptive Top-K selection, cross-reference resolution, context assembly, and grounded LLM generation.
+
+---
+
 ## 🧠 How It Works
 
 The pipeline is implemented manually without LangChain or LlamaIndex.
@@ -56,7 +73,7 @@ LLM Generation
 Answer + Sources
 ```
 
-### 1. Document ingestion
+### 1. Document Ingestion
 
 The insurance policy is parsed into structured sections containing:
 
@@ -80,15 +97,15 @@ sentence-transformers/all-MiniLM-L6-v2
 
 The section title and content are combined before embedding.
 
-### 3. Semantic retrieval
+### 3. Semantic Retrieval
 
 The user's question is embedded using the same model.
 
-Cosine similarity is then calculated between the question vector and all policy section vectors.
+Cosine similarity is calculated between the question vector and all policy section vectors.
 
-The sections are ranked from most relevant to least relevant.
+The sections are then ranked from most relevant to least relevant.
 
-### 4. Adaptive Top-K retrieval
+### 4. Adaptive Top-K Retrieval
 
 The system initially considers the strongest retrieval result.
 
@@ -106,7 +123,7 @@ Top-2 score: 0.607
 
 This prevents the system from blindly sending a fixed number of chunks for every question.
 
-### 5. Cross-reference resolution
+### 5. Cross-Reference Resolution
 
 Insurance policies frequently contain references such as:
 
@@ -130,7 +147,7 @@ Direct lookup
 Section 4.2 added to context
 ```
 
-### 6. Answer generation
+### 6. Answer Generation
 
 Only the selected context is sent to the LLM.
 
@@ -193,6 +210,9 @@ The information is not available in the provided documents.
 
 ```text
 insurance-rag-demo/
+│
+├── assets/
+│   └── architecture.png
 │
 ├── data/
 │   └── home_policy.txt
@@ -359,4 +379,4 @@ This makes it possible to inspect and control the retrieval behavior without hid
 
 Data Science & Artificial Intelligence
 
-[LinkedIn](https://www.linkedin.com/in/ayoub-mossati/)
+[LinkedIn](https://www.linkedin.com/in/ayoub-mossati-a720aa36a/)
